@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .bg-camo {
+    background-image: url('/camo.png');
+    background-size: cover;
+    background-position: center;
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
