@@ -7,7 +7,7 @@ export default function Header({ menuItems }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className='bg-gradient-to-b from-black to-green-900 p-4 relative'>
+    <header className='bg-gradient-to-b from-black to-[#616435] p-4 relative'>
       <div className='relative flex flex-col items-center justify-center'>
         {/* Mobile Hamburger */}
         <div className='md:hidden absolute left-4 top-1'>

@@ -10,7 +10,7 @@ export default function GuitarList({ menuItems }) {
           key={item}
           className='bg-black bg-opacity-50 flex flex-col items-center justify-center p-4 rounded shadow'
         >
-          <div className='w-full mb-4 bg-green-900'>
+          <div className='w-full mb-4 bg-[#616435]'>
             <Image
               src={`/guitar-thumbs/${item.toLowerCase()}.png`}
               alt={item}
