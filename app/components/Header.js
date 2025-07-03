@@ -28,7 +28,7 @@ export default function Header({ menuItems }) {
           className='mx-auto md:w-[300px] w-[240px]'
         />
 
-        {/* Desktop menu */}
+        {/* Desktop menu * /}
         <nav className='hidden md:flex mt-4 divide-x divide-white/20'>
           {menuItems.map((item, index) => (
             <button
@@ -42,7 +42,7 @@ export default function Header({ menuItems }) {
           ))}
         </nav>
 
-        {/* Mobile menu */}
+        {/* Mobile menu * /}
         {menuOpen && (
           <div className='md:hidden mt-2 flex flex-col items-center z-10'>
             {menuItems.map((item) => (
@@ -52,6 +52,7 @@ export default function Header({ menuItems }) {
             ))}
           </div>
         )}
+        */}
       </div>
     </header>
   );
