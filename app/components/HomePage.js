@@ -18,8 +18,7 @@ export default function HomePage() {
     >
       <Header menuItems={menuItems} />
       <Hero />
-      {/*<GuitarList menuItems={menuItems} />*/}
-      <h1 className='text-center text-[5rem] font-bold mb-12'>Website Coming Soon!</h1>
+      <GuitarList menuItems={menuItems} />
       <Footer />
     </motion.div>
   );
