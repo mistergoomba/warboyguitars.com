@@ -5,8 +5,11 @@ import Image from 'next/image';
 
 export default function GuitarList({ menuItems }) {
   const [selectedGuitar, setSelectedGuitar] = useState(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const [zoomVisible, setZoomVisible] = useState(false);
   const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
+
+  const imageRef = useRef(null);
   const zoomRef = useRef(null);
 
   const closeOverlay = () => {
@@ -15,10 +18,10 @@ export default function GuitarList({ menuItems }) {
   };
 
   const handleMouseMove = (e) => {
-    const rect = zoomRef.current.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    setZoomPosition({ x, y });
+    const rect = imageRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    setZoomPosition({ x, y, width: rect.width, height: rect.height });
   };
 
   return (
@@ -28,7 +31,10 @@ export default function GuitarList({ menuItems }) {
           <div
             key={item}
             className='bg-black bg-opacity-50 flex flex-col items-center justify-center p-4 rounded shadow cursor-pointer'
-            onClick={() => setSelectedGuitar(item)}
+            onClick={() => {
+              setSelectedGuitar(item);
+              setImageLoaded(false);
+            }}
           >
             <div className='w-full mb-4 bg-[#616435]'>
               <Image
@@ -58,39 +64,58 @@ export default function GuitarList({ menuItems }) {
             &times;
           </button>
 
+          {/* Loading Spinner */}
+          {!imageLoaded && (
+            <div className='absolute inset-0 flex items-center justify-center'>
+              <div className='animate-spin rounded-full h-16 w-16 border-t-4 border-white border-opacity-50'></div>
+            </div>
+          )}
+
+          {/* Desktop Image with Zoom */}
           <div
             ref={zoomRef}
-            className='relative max-w-full max-h-full hidden md:block'
+            className={`relative max-w-full max-h-full hidden md:block ${
+              !imageLoaded ? 'invisible' : ''
+            }`}
             onMouseMove={handleMouseMove}
             onMouseEnter={() => setZoomVisible(true)}
             onMouseLeave={() => setZoomVisible(false)}
           >
             <Image
+              ref={imageRef}
               src={`/guitar-thumbs/${selectedGuitar.toLowerCase()}.png`}
               alt={selectedGuitar}
               width={1200}
               height={1800}
-              className='w-auto h-full max-h-[100vh] mx-auto select-none'
+              className='w-auto h-full max-h-[90vh] mx-auto select-none'
               priority
+              onLoad={() => setImageLoaded(true)}
             />
 
-            {/* Zoom lens */}
             {zoomVisible && (
+              <div className='absolute inset-0 bg-black/30 backdrop-blur-sm z-30 transition-opacity duration-300 pointer-events-none' />
+            )}
+
+            {zoomVisible && imageLoaded && (
               <div
-                className='absolute w-64 h-64 border-2 border-white rounded-full overflow-hidden pointer-events-none z-40'
+                className={`absolute w-64 h-64 border-2 border-white rounded-full overflow-hidden pointer-events-none z-40 transition-opacity duration-300 ${
+                  zoomVisible ? 'opacity-100' : 'opacity-0'
+                }`}
                 style={{
-                  top: `calc(${zoomPosition.y}% - 128px)`,
-                  left: `calc(${zoomPosition.x}% - 128px)`,
+                  top: `${zoomPosition.y - 128}px`,
+                  left: `${zoomPosition.x - 128}px`,
                   backgroundImage: `url(/guitar-thumbs/${selectedGuitar.toLowerCase()}.png)`,
-                  backgroundSize: '2000px auto',
-                  backgroundPosition: `${zoomPosition.x}% ${zoomPosition.y}%`,
+                  backgroundSize: `3000px auto`,
+                  backgroundPosition: `${(zoomPosition.x / zoomPosition.width) * 100}% ${
+                    (zoomPosition.y / zoomPosition.height) * 100
+                  }%`,
                 }}
               />
             )}
           </div>
 
-          {/* Mobile fallback image (no zoom) */}
-          <div className='md:hidden max-w-full max-h-full'>
+          {/* Mobile Image */}
+          <div className={`md:hidden max-w-full max-h-full ${!imageLoaded ? 'invisible' : ''}`}>
             <Image
               src={`/guitar-thumbs/${selectedGuitar.toLowerCase()}.png`}
               alt={selectedGuitar}
@@ -98,6 +123,7 @@ export default function GuitarList({ menuItems }) {
               height={1800}
               className='w-auto h-full max-h-[100vh] mx-auto'
               priority
+              onLoad={() => setImageLoaded(true)}
             />
           </div>
         </div>
