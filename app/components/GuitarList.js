@@ -8,6 +8,9 @@ export default function GuitarList({ menuItems }) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [zoomVisible, setZoomVisible] = useState(false);
   const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
+  const [mobileZoomed, setMobileZoomed] = useState(false);
+  const [mobileOffset, setMobileOffset] = useState({ x: 0, y: 0 });
+  const [mobileStart, setMobileStart] = useState(null);
 
   const imageRef = useRef(null);
   const zoomRef = useRef(null);
@@ -22,6 +25,29 @@ export default function GuitarList({ menuItems }) {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     setZoomPosition({ x, y, width: rect.width, height: rect.height });
+  };
+
+  const handleTouchStart = (e) => {
+    if (!mobileZoomed) return;
+    const touch = e.touches[0];
+    setMobileStart({ x: touch.clientX, y: touch.clientY });
+  };
+
+  const handleTouchMove = (e) => {
+    if (!mobileZoomed || !mobileStart) return;
+    const touch = e.touches[0];
+    const dx = touch.clientX - mobileStart.x;
+    const dy = touch.clientY - mobileStart.y;
+    setMobileOffset((prev) => ({
+      x: prev.x + dx,
+      y: prev.y + dy,
+    }));
+    setMobileStart({ x: touch.clientX, y: touch.clientY });
+  };
+
+  const handleDoubleTap = () => {
+    setMobileZoomed(false);
+    setMobileOffset({ x: 0, y: 0 });
   };
 
   return (
@@ -115,16 +141,48 @@ export default function GuitarList({ menuItems }) {
           </div>
 
           {/* Mobile Image */}
-          <div className={`md:hidden max-w-full max-h-full ${!imageLoaded ? 'invisible' : ''}`}>
+          <div
+            className={`md:hidden max-w-full max-h-full ${!imageLoaded ? 'invisible' : ''}`}
+            onClick={() => setMobileZoomed(!mobileZoomed)}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onDoubleClick={handleDoubleTap}
+          >
             <Image
               src={`/guitar-thumbs/${selectedGuitar.toLowerCase()}.png`}
               alt={selectedGuitar}
               width={1200}
               height={1800}
-              className='w-auto h-full max-h-[100vh] mx-auto'
+              className='w-auto h-full max-h-[100vh] mx-auto select-none pointer-events-none'
               priority
               onLoad={() => setImageLoaded(true)}
+              style={{
+                transform: mobileZoomed
+                  ? `scale(4) translate(${mobileOffset.x / 2}px, ${mobileOffset.y / 2}px)`
+                  : 'scale(1)',
+                transition: 'transform 0.25s ease',
+                transformOrigin: 'center',
+              }}
             />
+            {imageLoaded && (
+              <div className='absolute bottom-6 right-6 z-50 bg-white text-black px-3 py-1 rounded-full md:hidden flex items-center gap-2 text-sm font-bold'>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  className='w-5 h-5'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  stroke='currentColor'
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M21 21l-4.35-4.35m1.7-4.65a7 7 0 11-14 0 7 7 0 0114 0z'
+                  />
+                </svg>
+                {mobileZoomed ? 'Zoom Out' : 'Zoom In'}
+              </div>
+            )}
           </div>
         </div>
       )}
