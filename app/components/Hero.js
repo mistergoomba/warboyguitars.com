@@ -3,7 +3,7 @@ import Image from 'next/image';
 export default function Hero() {
   return (
     <section className='relative w-full mb-12 text-white'>
-      <picture>
+      <picture className='flex md:justify-center'>
         {/* Desktop image */}
         <source srcSet='/hero-desktop.jpg' media='(min-width: 768px)' />
         {/* Mobile fallback */}
@@ -13,7 +13,7 @@ export default function Hero() {
           width={1600}
           height={900}
           priority
-          className='w-full h-auto max-w-full'
+          className='w-full h-auto max-w-full md:w-auto'
         />
       </picture>
     </section>
