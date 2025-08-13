@@ -1,15 +1,4 @@
-import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
 
 export const metadata = {
   title: 'WARBOY GUITARS',
@@ -19,7 +8,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+      <body className='bg-[#0f1113] text-[#e6e3db] antialiased'>
+        <div className="pointer-events-none fixed inset-0 bg-[url('/noise.png')] opacity-[0.06] mix-blend-soft-light" />
+        {children}
+      </body>
     </html>
   );
 }

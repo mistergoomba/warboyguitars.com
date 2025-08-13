@@ -9,7 +9,7 @@ import Footer from './Footer';
 export default function HomePage() {
   return (
     <motion.div
-      className='min-h-[100dvh] bg-camo bg-fixed text-white flex flex-col'
+      className='min-h-[100dvh] bg-fixed text-white flex flex-col'
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.25 }}
