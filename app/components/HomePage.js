@@ -6,8 +6,6 @@ import Hero from './Hero';
 import GuitarList from './GuitarList';
 import Footer from './Footer';
 
-const menuItems = ['WARPIG', 'SPECTER', 'CLAWTOOTH', 'ARCWIND'];
-
 export default function HomePage() {
   return (
     <motion.div
@@ -16,9 +14,9 @@ export default function HomePage() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.25 }}
     >
-      <Header menuItems={menuItems} />
+      <Header />
       <Hero />
-      <GuitarList menuItems={menuItems} />
+      <GuitarList />
       <Footer />
     </motion.div>
   );
