@@ -6,7 +6,7 @@ import Hero from './Hero';
 import GuitarList from './GuitarList';
 import Footer from './Footer';
 
-const menuItems = ['WARPIG', 'THUNDERPIG', 'SPECTER', 'CLAWTOOTH', 'ARCWIND'];
+const menuItems = ['WARPIG', 'SPECTER', 'CLAWTOOTH', 'ARCWIND'];
 
 export default function HomePage() {
   return (
