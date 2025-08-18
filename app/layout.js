@@ -1,3 +1,4 @@
+// layout.js
 import './globals.css';
 import { Black_Ops_One, Russo_One } from 'next/font/google';
 
@@ -13,7 +14,14 @@ const russo = Russo_One({
   variable: '--font-russo',
 });
 
+// Resolve a base URL for metadata in every environment
+const appBaseUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
+
 export const metadata = {
+  metadataBase: new URL(appBaseUrl),
+
   title: 'WARBOY GUITARS | Handcrafted for Battle',
   description:
     'WARBOY GUITARS — forged in fire, built for stage warfare. Explore unique handcrafted guitars like WARPIG, SPECTER, CLAWTOOTH, and ARCWIND.',
@@ -21,7 +29,7 @@ export const metadata = {
     title: 'WARBOY GUITARS | Handcrafted for Battle',
     description:
       'Custom guitars born from chaos — WARPIG, SPECTER, CLAWTOOTH, ARCWIND. Designed to dominate the stage.',
-    url: 'https://warboyguitars.com',
+    url: '/',
     siteName: 'WARBOY GUITARS',
     images: [
       {
@@ -46,6 +54,8 @@ export const metadata = {
     shortcut: '/favicon.ico',
     apple: '/apple-touch-icon.png',
   },
+  alternates: { canonical: '/' },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }) {

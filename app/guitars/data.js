@@ -28,6 +28,8 @@ export const GUITARS = {
     thumb: '/guitars/thunderpig/thumb.jpg',
     images: ['/guitars/thunderpig/1.jpg', '/guitars/thunderpig/2.jpg'],
     specs: [],
+    testimonial:
+      "“I've never owned a bass I loved this much. I've played more bass in the last 48 hours than I have in the last 5 years.” — Nate",
   },
 
   specter: {
@@ -72,8 +74,6 @@ export const GUITARS = {
       '12" fretboard radius',
       '500k pots',
     ],
-    testimonial:
-      "“I've never owned a bass I loved this much. I've played more bass in the last 48 hours than I have in the last 5 years.” — Nate",
   },
 
   arcwind: {

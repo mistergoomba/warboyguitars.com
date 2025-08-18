@@ -40,7 +40,7 @@ export default function GuitarNav({ tabs, slug }) {
         {/* Mobile: big title + red chevron that opens a dropdown */}
         <div className='md:hidden py-3 relative'>
           <div className='flex items-center justify-between'>
-            <h2 className='text-2xl font-extrabold tracking-wide text-white'>{activeTab?.name}</h2>
+            <h2 className='text-2xl font-blackops tracking-wide text-white'>{activeTab?.name}</h2>
 
             <button
               ref={buttonRef}
@@ -87,7 +87,7 @@ export default function GuitarNav({ tabs, slug }) {
                         href={`/guitars/${t.slug}`}
                         role='menuitem'
                         onClick={() => setOpen(false)}
-                        className={`block w-full text-left px-4 py-3 transition font-bold ${
+                        className={`block w-full text-left px-4 py-3 transition font-blackops ${
                           active ? 'bg-[#a54c3c] text-white' : 'text-white/90 hover:bg-white/10'
                         }`}
                         aria-current={active ? 'page' : undefined}
@@ -125,7 +125,7 @@ export default function GuitarNav({ tabs, slug }) {
                     rounded-full md:rounded-none md:rounded-t-lg
                     px-4 py-2 md:py-3
                     transition
-                    font-bold
+                    font-blackops
                     md:w-full
                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60
                     ${
