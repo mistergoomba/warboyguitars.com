@@ -9,7 +9,7 @@ export async function POST(req) {
 
     const { error } = await resend.emails.send({
       from: 'Warboy Guitars <contact@warboyguitars.com>',
-      to: 'mistergoomba@gmail.com', //['s.tchavez@yahoo.com', 'r.rampy@outlook.com'],
+      to: ['s.tchavez@yahoo.com', 'r.rampy@outlook.com'],
       replyTo: email,
       subject: 'WARBOY GUITARS Contact Form',
       html: `
