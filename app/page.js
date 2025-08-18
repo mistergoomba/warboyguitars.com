@@ -11,6 +11,10 @@ export default function Home() {
     // Check if URL ends with #no-intro
     if (window.location.hash === '#no-intro') {
       setSkipIntro(true);
+
+      const url = new URL(window.location.href);
+      url.hash = '';
+      history.replaceState(null, '', url.toString());
     }
   }, []);
 
