@@ -1,16 +1,20 @@
 'use client';
-import { useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useState, useEffect } from 'react';
 import Intro from './components/Intro';
 import HomePage from './components/HomePage';
 
 export default function Home() {
   const [introComplete, setIntroComplete] = useState(false);
+  const [skipIntro, setSkipIntro] = useState(false);
 
-  const searchParams = useSearchParams();
-  const skipParam = searchParams.get('no-intro') === '1';
+  useEffect(() => {
+    // Check if URL ends with #no-intro
+    if (window.location.hash === '#no-intro') {
+      setSkipIntro(true);
+    }
+  }, []);
 
-  const showHome = skipParam || introComplete;
+  const showHome = skipIntro || introComplete;
 
   return (
     <div className='min-h-[100dvh]'>

@@ -31,8 +31,7 @@ export default function Header() {
         }`}
       >
         <div className='bg-camo bg-cover py-1'>
-          {/* 4-column grid: 25% | 50% | 25% */}
-          <div className='mx-auto max-w-6xl px-4 grid grid-cols-4 items-center'>
+          <div className='mx-auto max-w-6xl px-4 grid grid-cols-6 md:grid-cols-4 items-center'>
             {/* Left: Hamburger */}
             <div className='flex justify-start'>
               <button
@@ -56,8 +55,8 @@ export default function Header() {
             </div>
 
             {/* Center: Logo spans 2 columns (50%) */}
-            <div className='col-span-2 flex justify-center'>
-              <Link href='/' className='block'>
+            <div className='col-span-4 md:col-span-2 flex justify-center'>
+              <Link href='/#no-intro' className='block'>
                 <Image
                   src='/logo-horiz.png'
                   alt='Warboy Logo'

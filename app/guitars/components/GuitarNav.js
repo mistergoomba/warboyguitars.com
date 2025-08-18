@@ -35,40 +35,38 @@ export default function GuitarNav({ tabs, slug }) {
   const activeTab = tabs.find((t) => t.slug === slug) ?? tabs[0];
 
   return (
-    <nav className='sticky top-0 z-20 bg-[#0f1113]/80 backdrop-blur'>
+    <nav className='relative z-50 bg-[#0f1113]/80 backdrop-blur'>
       <div className='mx-auto max-w-6xl px-4'>
         {/* Mobile: big title + red chevron that opens a dropdown */}
         <div className='md:hidden py-3 relative'>
-          <div className='flex items-center justify-between'>
+          {/* Whole row is a button */}
+          <button
+            ref={buttonRef}
+            type='button'
+            aria-expanded={open}
+            aria-controls='guitar-select-menu'
+            onClick={() => setOpen((v) => !v)}
+            className='flex w-full items-center justify-between rounded-md px-3 py-2 bg-white/5 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60'
+          >
             <h2 className='text-2xl font-blackops tracking-wide text-white'>{activeTab?.name}</h2>
 
-            <button
-              ref={buttonRef}
-              type='button'
-              aria-expanded={open}
-              aria-controls='guitar-select-menu'
-              onClick={() => setOpen((v) => !v)}
-              className='inline-flex items-center gap-2 rounded-md px-3 py-2 bg-white/5 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60'
+            {/* Red down arrow */}
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              viewBox='0 0 24 24'
+              className={`w-6 h-6 transition-transform ${open ? 'rotate-180' : ''}`}
+              aria-hidden='true'
             >
-              <span className='sr-only'>Select a different guitar</span>
-              {/* Red down arrow */}
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                viewBox='0 0 24 24'
-                className={`w-6 h-6 transition-transform ${open ? 'rotate-180' : ''}`}
-                aria-hidden='true'
-              >
-                <path
-                  d='M6 9l6 6 6-6'
-                  fill='none'
-                  stroke='#ef4444' /* Tailwind red-500 */
-                  strokeWidth='2'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                />
-              </svg>
-            </button>
-          </div>
+              <path
+                d='M6 9l6 6 6-6'
+                fill='none'
+                stroke='#ef4444' /* Tailwind red-500 */
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+            </svg>
+          </button>
 
           {/* Dropdown */}
           {open && (
@@ -102,7 +100,7 @@ export default function GuitarNav({ tabs, slug }) {
           )}
         </div>
 
-        {/* Desktop: unchanged tab row */}
+        {/* Desktop: tab row */}
         <ul
           className='hidden md:flex w-full
           overflow-x-auto md:overflow-visible
