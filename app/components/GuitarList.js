@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { GUITARS } from '@/app/guitars/data';
+import { GUITARS } from '@/app/guitar/data';
 
 const guitars = Object.values(GUITARS);
 
@@ -12,7 +12,7 @@ export default function GuitarList() {
       {guitars.map((g) => (
         <Link
           key={g.slug}
-          href={`/guitars/${g.slug}`}
+          href={`/guitar/${g.slug}`}
           className='bg-[#3f4a2e] bg-opacity-50 flex flex-col items-center justify-center p-4 rounded shadow cursor-pointer group'
         >
           <div className='w-full mb-4 bg-[#6a7149]'>

@@ -1,0 +1,52 @@
+{
+  "images": [
+    {
+      "id": "1",
+      "alt": "Gallery image 1",
+      "aspectRatio": 1.0,
+      "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px",
+      "srcSetWebp": "/guitars/warpig/gallery/1_w1600.webp 1600w, /guitars/warpig/gallery/1_w1200.webp 1200w, /guitars/warpig/gallery/1_w800.webp 800w, /guitars/warpig/gallery/1_w400.webp 400w",
+      "srcSetJpeg": "/guitars/warpig/gallery/1_w1600.jpg 1600w, /guitars/warpig/gallery/1_w1200.jpg 1200w, /guitars/warpig/gallery/1_w800.jpg 800w, /guitars/warpig/gallery/1_w400.jpg 400w"
+    },
+    {
+      "id": "2",
+      "alt": "Gallery image 2",
+      "aspectRatio": 0.75,
+      "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px",
+      "srcSetWebp": "/guitars/warpig/gallery/2_w1536.webp 1536w, /guitars/warpig/gallery/2_w1200.webp 1200w, /guitars/warpig/gallery/2_w800.webp 800w, /guitars/warpig/gallery/2_w400.webp 400w",
+      "srcSetJpeg": "/guitars/warpig/gallery/2_w1536.jpg 1536w, /guitars/warpig/gallery/2_w1200.jpg 1200w, /guitars/warpig/gallery/2_w800.jpg 800w, /guitars/warpig/gallery/2_w400.jpg 400w"
+    },
+    {
+      "id": "3",
+      "alt": "Gallery image 3",
+      "aspectRatio": 0.9817,
+      "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px",
+      "srcSetWebp": "/guitars/warpig/gallery/3_w1129.webp 1129w, /guitars/warpig/gallery/3_w1129.webp 1129w, /guitars/warpig/gallery/3_w800.webp 800w, /guitars/warpig/gallery/3_w400.webp 400w",
+      "srcSetJpeg": "/guitars/warpig/gallery/3_w1129.jpg 1129w, /guitars/warpig/gallery/3_w1129.jpg 1129w, /guitars/warpig/gallery/3_w800.jpg 800w, /guitars/warpig/gallery/3_w400.jpg 400w"
+    },
+    {
+      "id": "4",
+      "alt": "Gallery image 4",
+      "aspectRatio": 1.0,
+      "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px",
+      "srcSetWebp": "/guitars/warpig/gallery/4_w1600.webp 1600w, /guitars/warpig/gallery/4_w1200.webp 1200w, /guitars/warpig/gallery/4_w800.webp 800w, /guitars/warpig/gallery/4_w400.webp 400w",
+      "srcSetJpeg": "/guitars/warpig/gallery/4_w1600.jpg 1600w, /guitars/warpig/gallery/4_w1200.jpg 1200w, /guitars/warpig/gallery/4_w800.jpg 800w, /guitars/warpig/gallery/4_w400.jpg 400w"
+    },
+    {
+      "id": "5",
+      "alt": "Gallery image 5",
+      "aspectRatio": 0.75,
+      "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px",
+      "srcSetWebp": "/guitars/warpig/gallery/5_w1536.webp 1536w, /guitars/warpig/gallery/5_w1200.webp 1200w, /guitars/warpig/gallery/5_w800.webp 800w, /guitars/warpig/gallery/5_w400.webp 400w",
+      "srcSetJpeg": "/guitars/warpig/gallery/5_w1536.jpg 1536w, /guitars/warpig/gallery/5_w1200.jpg 1200w, /guitars/warpig/gallery/5_w800.jpg 800w, /guitars/warpig/gallery/5_w400.jpg 400w"
+    },
+    {
+      "id": "6",
+      "alt": "Gallery image 6",
+      "aspectRatio": 0.7499,
+      "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px",
+      "srcSetWebp": "/guitars/warpig/gallery/6_w1535.webp 1535w, /guitars/warpig/gallery/6_w1200.webp 1200w, /guitars/warpig/gallery/6_w800.webp 800w, /guitars/warpig/gallery/6_w400.webp 400w",
+      "srcSetJpeg": "/guitars/warpig/gallery/6_w1535.jpg 1535w, /guitars/warpig/gallery/6_w1200.jpg 1200w, /guitars/warpig/gallery/6_w800.jpg 800w, /guitars/warpig/gallery/6_w400.jpg 400w"
+    }
+  ]
+}

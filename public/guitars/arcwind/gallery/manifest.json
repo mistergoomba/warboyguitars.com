@@ -1,0 +1,12 @@
+{
+  "images": [
+    {
+      "id": "1",
+      "alt": "arcwind gallery image",
+      "aspectRatio": 0.5622,
+      "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px",
+      "srcSetWebp": "/guitars/arcwind/gallery/1_w750.webp 750w, /guitars/arcwind/gallery/1_w750.webp 750w, /guitars/arcwind/gallery/1_w750.webp 750w, /guitars/arcwind/gallery/1_w400.webp 400w",
+      "srcSetJpeg": "/guitars/arcwind/gallery/1_w750.jpg 750w, /guitars/arcwind/gallery/1_w750.jpg 750w, /guitars/arcwind/gallery/1_w750.jpg 750w, /guitars/arcwind/gallery/1_w400.jpg 400w"
+    }
+  ]
+}

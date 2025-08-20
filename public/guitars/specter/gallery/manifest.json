@@ -1,0 +1,28 @@
+{
+  "images": [
+    {
+      "id": "1",
+      "alt": "specter gallery image 1",
+      "aspectRatio": 0.9149,
+      "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px",
+      "srcSetWebp": "/guitars/specter/gallery/1_w548.webp 548w, /guitars/specter/gallery/1_w548.webp 548w, /guitars/specter/gallery/1_w548.webp 548w, /guitars/specter/gallery/1_w400.webp 400w",
+      "srcSetJpeg": "/guitars/specter/gallery/1_w548.jpg 548w, /guitars/specter/gallery/1_w548.jpg 548w, /guitars/specter/gallery/1_w548.jpg 548w, /guitars/specter/gallery/1_w400.jpg 400w"
+    },
+    {
+      "id": "2",
+      "alt": "specter gallery image 2",
+      "aspectRatio": 0.75,
+      "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px",
+      "srcSetWebp": "/guitars/specter/gallery/2_w1536.webp 1536w, /guitars/specter/gallery/2_w1200.webp 1200w, /guitars/specter/gallery/2_w800.webp 800w, /guitars/specter/gallery/2_w400.webp 400w",
+      "srcSetJpeg": "/guitars/specter/gallery/2_w1536.jpg 1536w, /guitars/specter/gallery/2_w1200.jpg 1200w, /guitars/specter/gallery/2_w800.jpg 800w, /guitars/specter/gallery/2_w400.jpg 400w"
+    },
+    {
+      "id": "3",
+      "alt": "specter gallery image 3",
+      "aspectRatio": 0.75,
+      "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px",
+      "srcSetWebp": "/guitars/specter/gallery/3_w1536.webp 1536w, /guitars/specter/gallery/3_w1200.webp 1200w, /guitars/specter/gallery/3_w800.webp 800w, /guitars/specter/gallery/3_w400.webp 400w",
+      "srcSetJpeg": "/guitars/specter/gallery/3_w1536.jpg 1536w, /guitars/specter/gallery/3_w1200.jpg 1200w, /guitars/specter/gallery/3_w800.jpg 800w, /guitars/specter/gallery/3_w400.jpg 400w"
+    }
+  ]
+}

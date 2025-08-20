@@ -2,7 +2,7 @@
 
 @layer utilities {
   .bg-camo {
-    background-image: url('/camo.png');
+    background-image: url('/camo.webp');
     background-size: cover;
     background-position: center;
   }

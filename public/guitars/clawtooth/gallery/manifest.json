@@ -1,0 +1,12 @@
+{
+  "images": [
+    {
+      "id": "1",
+      "alt": "clawtooth gallery image",
+      "aspectRatio": 0.75,
+      "sizes": "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px",
+      "srcSetWebp": "/guitars/clawtooth/gallery/1_w1536.webp 1536w, /guitars/clawtooth/gallery/1_w1200.webp 1200w, /guitars/clawtooth/gallery/1_w800.webp 800w, /guitars/clawtooth/gallery/1_w400.webp 400w",
+      "srcSetJpeg": "/guitars/clawtooth/gallery/1_w1536.jpg 1536w, /guitars/clawtooth/gallery/1_w1200.jpg 1200w, /guitars/clawtooth/gallery/1_w800.jpg 800w, /guitars/clawtooth/gallery/1_w400.jpg 400w"
+    }
+  ]
+}

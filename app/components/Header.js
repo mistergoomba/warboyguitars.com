@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { GUITARS } from '@/app/guitars/data';
+import { GUITARS } from '@/app/guitar/data';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -72,10 +72,23 @@ export default function Header() {
             </div>
 
             {/* Right: Tagline (desktop only) */}
-            <div className='hidden md:flex justify-end'>
-              <span className='font-russo tracking-wide uppercase text-sm text-[#e6e3db]/90'>
-                quality guitars for less
+            <div className='flex justify-end items-center gap-2'>
+              <span className='hidden md:inline font-russo tracking-wide uppercase text-right text-sm text-[#e6e3db]/90'>
+                quality guitars
+                <br />
+                for less
               </span>
+              <Image
+                src='/ca-usa-badge.png'
+                alt='California, USA'
+                width={66}
+                height={75}
+                className={`transition-all duration-300 cursor-pointer ${
+                  scrolled
+                    ? 'md:w-[35px] w-[26px] md:h-[40px] h-[30px]'
+                    : 'md:w-[66px] w-[55px] md:h-[75px] h-[63px]'
+                }`}
+              />
             </div>
           </div>
         </div>
@@ -119,7 +132,7 @@ export default function Header() {
               {GUITAR_LIST.map((g) => (
                 <li key={g.slug}>
                   <Link
-                    href={`/guitars/${g.slug}`}
+                    href={`/guitar/${g.slug}`}
                     onClick={() => setOpen(false)}
                     className='block rounded px-3 py-2 hover:bg-white/10'
                   >
