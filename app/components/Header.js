@@ -1,16 +1,34 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { GUITARS } from '@/app/guitar/data';
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
+    const onScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Show header when scrolling up, hide when scrolling down
+      if (currentScrollY < lastScrollY.current && currentScrollY > 50) {
+        // Scrolling up and past initial threshold
+        setVisible(true);
+      } else if (currentScrollY > lastScrollY.current) {
+        // Scrolling down
+        setVisible(false);
+      } else if (currentScrollY <= 50) {
+        // Near top of page, hide header
+        setVisible(false);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -26,8 +44,8 @@ export default function Header() {
   return (
     <>
       <header
-        className={`sticky top-0 z-30 border-b border-white/10 transition-all duration-300 ${
-          scrolled ? 'opacity-75' : 'opacity-100'
+        className={`fixed top-0 left-0 right-0 z-30 border-b border-white/10 transition-all duration-300 ${
+          visible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
         }`}
       >
         <div className='bg-camo bg-cover py-1'>
@@ -62,11 +80,7 @@ export default function Header() {
                   alt='Warboy Logo'
                   width={300}
                   height={80}
-                  className={`transition-all duration-300 cursor-pointer ${
-                    scrolled
-                      ? 'md:w-[150px] w-[120px] md:h-[40px] h-[30px]'
-                      : 'md:w-[300px] w-[240px] md:h-[80px] h-[60px]'
-                  }`}
+                  className={`transition-all duration-300 cursor-pointer md:w-[150px] w-[120px] md:h-[40px] h-[30px]`}
                 />
               </Link>
             </div>
@@ -83,11 +97,7 @@ export default function Header() {
                 alt='California, USA'
                 width={66}
                 height={75}
-                className={`transition-all duration-300 cursor-pointer ${
-                  scrolled
-                    ? 'md:w-[35px] w-[26px] md:h-[40px] h-[30px]'
-                    : 'md:w-[66px] w-[55px] md:h-[75px] h-[63px]'
-                }`}
+                className={`transition-all duration-300 cursor-pointer md:w-[35px] w-[26px] md:h-[40px] h-[30px]`}
               />
             </div>
           </div>

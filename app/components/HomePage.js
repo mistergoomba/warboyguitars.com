@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
 import Footer from './Footer';
+import Header from './Header';
 
 export default function HomePage() {
   const [logoComplete, setLogoComplete] = useState(false);
@@ -29,8 +30,8 @@ export default function HomePage() {
 
   const logoY = useTransform(scrollYProgress, [0, 0.6], [0, -500]);
   const taglinesY = useTransform(scrollYProgress, [0, 0.6], [0, -450]);
-  const adCopyY = useTransform(scrollYProgress, [0.2, 0.6], [150, -250]);
-  const adCopyOpacity = useTransform(scrollYProgress, [0.2, 0.5], [0, 1]);
+  const adCopyY = useTransform(scrollYProgress, [0.01, 0.6], [250, -250]);
+  const adCopyOpacity = useTransform(scrollYProgress, [0.01, 0.4], [0, 1]);
   const guitarOpacity = useTransform(scrollYProgress, [0.2, 0.5], [1, 0.25]);
   const containerY = useTransform(scrollYProgress, [0.9, 1], [0, -100]);
   const chevronOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
@@ -43,6 +44,7 @@ export default function HomePage() {
 
   return (
     <>
+      <Header />
       <div
         ref={containerRef}
         className={`relative w-full ${isMobile ? 'min-h-[200vh]' : 'min-h-screen'}`}
@@ -51,10 +53,6 @@ export default function HomePage() {
           className='w-full h-screen md:min-h-screen flex flex-col overflow-visible md:overflow-hidden sticky top-0'
           style={{
             ...(isMobile ? { y: containerY } : {}),
-            backgroundImage: 'url(/main-ad-bg.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
           }}
           animate={
             shouldShake
@@ -66,6 +64,15 @@ export default function HomePage() {
           }
           transition={{ duration: 0.3, ease: 'easeOut' }}
         >
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className='absolute inset-0 w-full h-full object-cover z-0'
+          >
+            <source src='/main-ad-bg.mp4' type='video/mp4' />
+          </video>
           <div className='relative z-20 pt-8 px-8 flex-shrink-0'>
             <motion.div
               initial={{ opacity: 0, scale: 0.5 }}
@@ -144,7 +151,9 @@ export default function HomePage() {
                   </motion.div>
                 </motion.div>
               </motion.div>
-              <div className='hidden md:block md:flex-1 md:text-left md:text-white md:mt-0'>
+              <div
+                className={`hidden md:block md:flex-1 md:text-left md:text-white md:mt-0 fade-in`}
+              >
                 <p className='text-base leading-relaxed max-w-[253px] md:ml-auto'>
                   Warboy Guitars were born on the battlefield of creativity, built by musicians who
                   demanded more. Every Warboy is a precision-crafted instrument engineered for
@@ -156,7 +165,7 @@ export default function HomePage() {
             </div>
             <motion.div
               ref={adCopyRef}
-              className='md:hidden px-0 pt-12 pb-12 text-white'
+              className='md:hidden px-0 pt-12 pb-12 text-white opacity-0'
               style={isMobile ? { y: adCopyY, opacity: adCopyOpacity } : {}}
             >
               <p className='text-2xl leading-relaxed max-w-4xl mx-auto'>
