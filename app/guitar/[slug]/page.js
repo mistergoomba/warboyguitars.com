@@ -13,7 +13,7 @@ export default async function Page({ params }) {
   const tabs = ALL.map((s) => ({ slug: s, name: GUITARS[s].name }));
 
   return (
-    <div className='min-h-[100dvh] text-[#e6e3db]'>
+    <div className='min-h-[100dvh] text-[#e6e3db] pt-13'>
       <Header />
       <GuitarNav tabs={tabs} slug={slug} />
       <GuitarClient slug={slug} />

@@ -8,7 +8,7 @@ const guitars = Object.values(GUITARS);
 
 export default function GuitarList() {
   return (
-    <section className='grid grid-cols-1 md:grid-cols-5 gap-4 px-4 mb-12'>
+    <section className='grid grid-cols-1 md:grid-cols-5 gap-4 px-4 py-8 mb-12'>
       {guitars.map((g) => (
         <Link
           key={g.slug}

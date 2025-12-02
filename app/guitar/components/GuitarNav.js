@@ -35,7 +35,7 @@ export default function GuitarNav({ tabs, slug }) {
   const activeTab = tabs.find((t) => t.slug === slug) ?? tabs[0];
 
   return (
-    <nav className='relative z-50 bg-[#0f1113]/80 backdrop-blur'>
+    <nav className='relative z-25 bg-[#0f1113]/80 backdrop-blur'>
       <div className='mx-auto max-w-6xl px-4'>
         {/* Mobile: big title + red chevron that opens a dropdown */}
         <div className='md:hidden py-3 relative'>

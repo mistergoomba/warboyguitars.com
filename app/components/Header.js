@@ -5,8 +5,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { GUITARS } from '@/app/guitar/data';
 
-export default function Header() {
-  const [visible, setVisible] = useState(false);
+export default function Header({ enableScrollBehavior = false }) {
+  // HomePage: starts hidden (enableScrollBehavior=true)
+  // Other pages: starts visible (enableScrollBehavior=false)
+  const [visible, setVisible] = useState(!enableScrollBehavior);
   const [open, setOpen] = useState(false);
   const lastScrollY = useRef(0);
 
@@ -14,16 +16,30 @@ export default function Header() {
     const onScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Show header when scrolling up, hide when scrolling down
-      if (currentScrollY < lastScrollY.current && currentScrollY > 50) {
-        // Scrolling up and past initial threshold
-        setVisible(true);
-      } else if (currentScrollY > lastScrollY.current) {
-        // Scrolling down
-        setVisible(false);
-      } else if (currentScrollY <= 50) {
-        // Near top of page, hide header
-        setVisible(false);
+      if (enableScrollBehavior) {
+        // HomePage behavior: hide at top, hide on scroll down, show on scroll up
+        if (currentScrollY < lastScrollY.current && currentScrollY > 50) {
+          // Scrolling up and past initial threshold
+          setVisible(true);
+        } else if (currentScrollY > lastScrollY.current) {
+          // Scrolling down
+          setVisible(false);
+        } else if (currentScrollY <= 50) {
+          // Near top of page, hide header
+          setVisible(false);
+        }
+      } else {
+        // Other pages behavior: show at top, hide on scroll down, show on scroll up
+        if (currentScrollY <= 50) {
+          // At top of page, always show header
+          setVisible(true);
+        } else if (currentScrollY < lastScrollY.current) {
+          // Scrolling up
+          setVisible(true);
+        } else if (currentScrollY > lastScrollY.current) {
+          // Scrolling down
+          setVisible(false);
+        }
       }
 
       lastScrollY.current = currentScrollY;
@@ -31,7 +47,7 @@ export default function Header() {
 
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [enableScrollBehavior]);
 
   useEffect(() => {
     if (open) document.body.classList.add('overflow-hidden');
