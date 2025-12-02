@@ -5,7 +5,7 @@ import HomePage from './components/HomePage';
 
 export default function Home() {
   const [introComplete, setIntroComplete] = useState(false);
-  const [skipIntro, setSkipIntro] = useState(false);
+  const [skipIntro, setSkipIntro] = useState(true);
 
   useEffect(() => {
     // Check if URL ends with #no-intro

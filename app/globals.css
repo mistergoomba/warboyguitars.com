@@ -14,6 +14,16 @@
   .font-russo {
     font-family: var(--font-russo), ui-sans-serif, system-ui, sans-serif;
   }
+
+  .hero-tagline {
+    color: #B48B5E;
+    font-family: Rockwell, serif;
+  }
+
+  .hero-title {
+    color: white;
+    font-family: var(--font-montserrat), sans-serif;
+  }
 }
 
 :root {
