@@ -13,6 +13,7 @@ export async function POST(req) {
       replyTo: email,
       subject: 'WARBOY GUITARS Contact Form',
       html: `
+        <p>${name} has contacted you via the WARBOY GUITARS Contact Form.</p>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Message:</strong></p>
