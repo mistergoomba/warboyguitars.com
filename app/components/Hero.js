@@ -55,10 +55,10 @@ export default function Hero() {
     <>
       <div
         ref={containerRef}
-        className={`relative w-full ${isMobile ? 'min-h-[200vh]' : 'min-h-screen'}`}
+        className={`relative w-full ${isMobile ? 'min-h-[200dvh]' : 'min-h-[100dvh]'}`}
       >
         <motion.div
-          className='w-full h-screen md:min-h-screen flex flex-col overflow-visible md:overflow-hidden sticky top-0'
+          className='w-full h-[100dvh] md:min-h-[100dvh] flex flex-col overflow-visible md:overflow-hidden sticky top-0'
           style={{
             ...(isMobile ? { y: containerY } : {}),
           }}
@@ -220,7 +220,7 @@ export default function Hero() {
               className='md:hidden px-0 pt-12 pb-12 text-white opacity-0'
               style={isMobile ? { y: adCopyY, opacity: adCopyOpacity } : {}}
             >
-              <p className='text-2xl leading-relaxed max-w-4xl mx-auto'>
+              <p className='text-xl leading-relaxed max-w-4xl mx-auto'>
                 Warboy Guitars were born on the battlefield of creativity, built by musicians who
                 demanded more. Every Warboy is a precision-crafted instrument engineered for speed,
                 tone, and power. Our guitars deliver custom-shop quality at half the price of
@@ -230,7 +230,7 @@ export default function Hero() {
             </motion.div>
           </div>
           <motion.div
-            className='absolute bottom-0 left-0 right-0 z-0 pb-8 h-[60vh]'
+            className='absolute bottom-0 left-0 right-0 z-0 pb-8 h-[60dvh]'
             initial={{ y: '-100%' }}
             animate={{ y: 0 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
