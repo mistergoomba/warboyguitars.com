@@ -90,7 +90,7 @@ export default function Header({ enableScrollBehavior = false }) {
 
             {/* Center: Logo spans 2 columns (50%) */}
             <div className='col-span-4 md:col-span-2 flex justify-center'>
-              <Link href='/#no-intro' className='block'>
+              <Link href='/' className='block'>
                 <Image
                   src='/logo-horiz.png'
                   alt='Warboy Logo'

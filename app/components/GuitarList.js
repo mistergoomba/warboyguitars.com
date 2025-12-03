@@ -3,21 +3,40 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import { GUITARS } from '@/app/guitar/data';
 
 // Order: warpig, specter, arcwind, clawtooth
 const guitarOrder = ['warpig', 'specter', 'arcwind', 'clawtooth'];
 const guitars = guitarOrder.map((slug) => GUITARS[slug]).filter(Boolean);
 
+// Check WebP support
+function useWebPSupport() {
+  const [supportsWebP, setSupportsWebP] = useState(true); // Default to true for SSR
+
+  useEffect(() => {
+    const webP = new window.Image();
+    webP.onload = webP.onerror = () => {
+      setSupportsWebP(webP.height === 2);
+    };
+    webP.src =
+      'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+  }, []);
+
+  return supportsWebP;
+}
+
 function GuitarRow({ guitar, index }) {
   // z-index increases: 0, 10, 20, 30 for stacking effect
   const zIndex = index * 10;
+  const supportsWebP = useWebPSupport();
+  const bgImage = supportsWebP ? guitar.bg : guitar.bgFallback || guitar.bg;
 
   return (
     <div
       className='sticky top-0 w-full h-[100dvh] flex items-start justify-center pt-8'
       style={{
-        backgroundImage: `url(${guitar.bg})`,
+        backgroundImage: `url(${bgImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',

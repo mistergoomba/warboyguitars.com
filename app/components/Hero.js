@@ -77,8 +77,10 @@ export default function Hero() {
             loop
             muted
             playsInline
+            preload='metadata'
             className='absolute inset-0 w-full h-full object-cover z-0'
           >
+            <source src='/main-ad-bg.webm' type='video/webm' />
             <source src='/main-ad-bg.mp4' type='video/mp4' />
           </video>
           <div className='relative z-20 pt-8 px-8 flex-shrink-0'>
