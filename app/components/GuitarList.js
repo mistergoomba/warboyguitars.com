@@ -2,8 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { motion } from 'framer-motion';
 import { GUITARS } from '@/app/guitar/data';
 
 // Order: warpig, specter, arcwind, clawtooth
@@ -11,36 +10,61 @@ const guitarOrder = ['warpig', 'specter', 'arcwind', 'clawtooth'];
 const guitars = guitarOrder.map((slug) => GUITARS[slug]).filter(Boolean);
 
 function GuitarRow({ guitar, index }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, amount: 0.2 });
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'center center', 'end start'],
-  });
-
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
-  const y = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [30, 0, 0, -30]);
+  // z-index increases: 0, 10, 20, 30 for stacking effect
+  const zIndex = index * 10;
 
   return (
     <div
-      ref={ref}
-      className='relative w-full h-[100dvh] flex items-end justify-center pb-8'
+      className='sticky top-0 w-full h-[100dvh] flex items-start justify-center pt-8'
       style={{
         backgroundImage: `url(${guitar.bg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
+        zIndex,
       }}
     >
       <motion.div
         className='flex flex-col items-center gap-1'
-        style={{
-          opacity,
-          y,
-        }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.3 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
       >
-        <div className='mb-4'>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
+        >
+          <Link
+            href={`/guitar/${guitar.slug}`}
+            className='text-white text-4xl md:text-6xl font-bold hover:opacity-80 transition'
+            style={{ fontFamily: 'Rockwell, serif' }}
+          >
+            {guitar.name}
+          </Link>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+        >
+          <Link
+            href={`/guitar/${guitar.slug}`}
+            className='bg-[#a54c3c] text-white text-lg md:text-xl font-bold px-4 py-2 rounded hover:bg-[#863d30] transition'
+          >
+            more info
+          </Link>
+        </motion.div>
+        <motion.div
+          className='mt-4'
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
+        >
           <Image
             src={guitar.thumb}
             alt={guitar.name}
@@ -50,20 +74,7 @@ function GuitarRow({ guitar, index }) {
             sizes='(max-width: 768px) 100vw, 50vw'
             priority={index === 0}
           />
-        </div>
-        <Link
-          href={`/guitar/${guitar.slug}`}
-          className='text-white text-4xl md:text-6xl font-bold hover:opacity-80 transition'
-          style={{ fontFamily: 'Rockwell, serif' }}
-        >
-          {guitar.name}
-        </Link>
-        <Link
-          href={`/guitar/${guitar.slug}`}
-          className='bg-[#a54c3c] text-white text-lg md:text-xl font-bold px-4 py-2 rounded hover:bg-[#863d30] transition'
-        >
-          more info
-        </Link>
+        </motion.div>
       </motion.div>
     </div>
   );
@@ -71,7 +82,7 @@ function GuitarRow({ guitar, index }) {
 
 export default function GuitarList() {
   return (
-    <section className='w-full'>
+    <section className='relative w-full'>
       {guitars.map((guitar, index) => (
         <GuitarRow key={guitar.slug} guitar={guitar} index={index} />
       ))}
