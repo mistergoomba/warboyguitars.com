@@ -2,8 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
 import { GUITARS } from '@/app/guitar/data';
 
 export default function GuitarList({ guitarOrder = [] }) {
@@ -30,9 +30,28 @@ export default function GuitarList({ guitarOrder = [] }) {
     const zIndex = index * 10;
     const supportsWebP = useWebPSupport();
     const bgImage = supportsWebP ? guitar.bg : guitar.bgFallback || guitar.bg;
+    const sectionRef = useRef(null);
+
+    // Track scroll progress through this section
+    const { scrollYProgress } = useScroll({
+      target: sectionRef,
+      offset: ['start end', 'end start'],
+    });
+
+    // Title: scroll up and into position, landing when section reaches top
+    // Start below (100px down) and move to final position (0) as section approaches top
+    const titleY = useTransform(scrollYProgress, [0, 0.5], [100, 0]);
+    const titleOpacity = useTransform(scrollYProgress, [0, 0.3, 0.5], [0, 0.8, 1]);
+
+    // Button: hidden until 90% of scroll progress, then fade in quickly
+    const buttonOpacity = useTransform(scrollYProgress, [0.4, 0.48], [0, 1]);
+
+    // Guitar: subtle size growth as you scroll
+    const guitarScale = useTransform(scrollYProgress, [0.2, 0.5], [0.8, 1.1]);
 
     return (
       <div
+        ref={sectionRef}
         data-guitar-section={guitar.slug}
         className='sticky top-0 w-full h-[100vh] flex items-start justify-center pt-8'
         style={{
@@ -43,18 +62,12 @@ export default function GuitarList({ guitarOrder = [] }) {
           zIndex,
         }}
       >
-        <motion.div
-          className='flex flex-col items-center gap-1'
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-        >
+        <div className='flex flex-col items-center gap-1'>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
+            style={{
+              y: titleY,
+              opacity: titleOpacity,
+            }}
           >
             <Link
               href={`/guitar/${guitar.slug}`}
@@ -65,10 +78,10 @@ export default function GuitarList({ guitarOrder = [] }) {
             </Link>
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+            style={{
+              opacity: buttonOpacity,
+              paddingTop: '10px',
+            }}
           >
             <Link
               href={`/guitar/${guitar.slug}`}
@@ -79,10 +92,9 @@ export default function GuitarList({ guitarOrder = [] }) {
           </motion.div>
           <motion.div
             className='mt-4'
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
+            style={{
+              scale: guitarScale,
+            }}
           >
             <Image
               src={guitar.thumb}
@@ -94,7 +106,7 @@ export default function GuitarList({ guitarOrder = [] }) {
               priority={index === 0}
             />
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     );
   }
