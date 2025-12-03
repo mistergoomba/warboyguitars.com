@@ -60,7 +60,7 @@ export default function ZoomOverlay({ src, alt, onClose }) {
       {imageLoaded && (
         <button
           type='button'
-          className='fixed bottom-6 right-6 z-50 bg-white text-black px-3 py-1 rounded-full items-center gap-2 text-sm font-bold cursor-pointer flex'
+          className='fixed top-16 right-4 z-50 bg-white text-black px-3 py-1 rounded-full items-center gap-2 text-sm font-bold cursor-pointer flex'
           onClick={toggleZoom}
           aria-label={zoomed ? 'Zoom out' : 'Zoom in'}
         >

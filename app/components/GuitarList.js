@@ -6,8 +6,8 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { GUITARS } from '@/app/guitar/data';
 
-// Order: warpig, specter, arcwind, clawtooth
-const guitarOrder = ['warpig', 'specter', 'arcwind', 'clawtooth'];
+// Order: warpig, ravenhawk, specter, arcwind, clawtooth
+const guitarOrder = ['warpig', 'ravenhawk', 'specter', 'arcwind', 'clawtooth'];
 const guitars = guitarOrder.map((slug) => GUITARS[slug]).filter(Boolean);
 
 // Check WebP support

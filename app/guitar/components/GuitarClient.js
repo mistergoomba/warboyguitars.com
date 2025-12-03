@@ -20,7 +20,7 @@ export default function GuitarClient({ slug }) {
       <section className='mx-auto max-w-6xl px-4 mt-8 grid grid-cols-1 md:grid-cols-2 gap-8'>
         {/* Left: hero image with overlay zoom control */}
         <div className='relative'>
-          <div className='relative bg-[#20251a] p-3 rounded group'>
+          <div className='relative p-3 rounded group'>
             <button
               type='button'
               onClick={() => setZoomOpen(true)}
@@ -67,18 +67,40 @@ export default function GuitarClient({ slug }) {
         </div>
 
         {/* Right: name + specs + testimonial */}
-        <div className='text-center'>
-          <h1 className='text-4xl tracking-wide font-blackops'>{guitar.name}</h1>
-          <ul className='mt-4 space-y-2 text-2xl leading-relaxed font-russo list-none'>
-            {guitar.specs.map((s) => (
-              <li key={s}>{s}</li>
-            ))}
-          </ul>
-          {guitar.testimonial && (
-            <blockquote className='mt-6 border-l-4 border-white/20 pl-4 italic text-white/80'>
-              {guitar.testimonial}
-            </blockquote>
-          )}
+        <div className='text-left'>
+          <div className='bg-gradient-to-br from-black/90 to-black/70 rounded-lg p-6 opacity-75'>
+            <h1
+              className='text-4xl tracking-wide'
+              style={{
+                fontFamily: 'Rockwell, serif',
+                color: '#B48B5E',
+              }}
+            >
+              {guitar.name}
+            </h1>
+            <ul
+              className='mt-4 space-y-2 text-xl leading-relaxed list-none'
+              style={{
+                fontFamily: 'var(--font-montserrat), sans-serif',
+                fontWeight: 400,
+              }}
+            >
+              {guitar.specs.map((s) => (
+                <li key={s}>{s}</li>
+              ))}
+            </ul>
+            {guitar.testimonial && (
+              <blockquote
+                className='mt-6 border-l-4 border-white/20 pl-4 italic text-white/80'
+                style={{
+                  fontFamily: 'var(--font-montserrat), sans-serif',
+                  fontWeight: 400,
+                }}
+              >
+                {guitar.testimonial}
+              </blockquote>
+            )}
+          </div>
         </div>
       </section>
 

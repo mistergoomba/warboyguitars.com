@@ -15,7 +15,7 @@ const russo = Russo_One({
 });
 
 const montserrat = Montserrat({
-  weight: '700',
+  weight: ['400', '700'],
   subsets: ['latin'],
   variable: '--font-montserrat',
 });
