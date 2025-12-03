@@ -14,7 +14,7 @@ export default async function Page({ params }) {
   const guitar = GUITARS[slug] ?? GUITARS['warpig'];
 
   return (
-    <div className='min-h-[100dvh] text-[#e6e3db] pt-13 relative'>
+    <div className='min-h-[100vh] text-[#e6e3db] pt-13 relative'>
       {/* Background image */}
       <div className='fixed inset-0 -z-10'>
         <picture className='w-full h-full'>

@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Rockwell';
+  src: url('/Rockwell-Font/ROCK.TTF') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Rockwell';
+  src: url('/Rockwell-Font/Rockwell-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer utilities {
   .bg-camo {
     background-image: url('/camo.webp');
@@ -17,7 +33,7 @@
 
   .hero-tagline {
     color: #B48B5E;
-    font-family: Rockwell, serif;
+    font-family: 'Rockwell', 'Courier New', serif;
   }
 
   .hero-title {

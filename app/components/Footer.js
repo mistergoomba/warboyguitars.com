@@ -36,7 +36,7 @@ export default function Footer() {
   return (
     <>
       {/* Contact Form */}
-      <section id='contact' className='text-white py-10 px-6 text-center min-h-[500px]'>
+      <section id='contact' data-contact-section className='text-white py-10 px-6 text-center min-h-[500px]'>
         <h2 className='font-blackops text-2xl mb-6'>Interested in a guitar or bass? Contact Us</h2>
         {!status && (
           <form onSubmit={handleSubmit} className='max-w-lg mx-auto flex flex-col gap-4'>

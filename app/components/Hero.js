@@ -13,7 +13,6 @@ export default function Hero() {
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const containerRef = useRef(null);
-  const adCopyRef = useRef(null);
 
   const GUITAR_LIST = Object.values(GUITARS).map(({ name, slug }) => ({ name, slug }));
 
@@ -37,12 +36,6 @@ export default function Hero() {
     offset: ['start start', 'end start'],
   });
 
-  const logoY = useTransform(scrollYProgress, [0, 0.6], [0, -500]);
-  const taglinesY = useTransform(scrollYProgress, [0, 0.6], [0, -450]);
-  const adCopyY = useTransform(scrollYProgress, [0.01, 0.6], [250, -250]);
-  const adCopyOpacity = useTransform(scrollYProgress, [0.01, 0.4], [0, 1]);
-  const guitarOpacity = useTransform(scrollYProgress, [0.2, 0.5], [1, 0.25]);
-  const containerY = useTransform(scrollYProgress, [0.9, 1], [0, -100]);
   const chevronOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
 
   const handleGuitarComplete = () => {
@@ -53,15 +46,9 @@ export default function Hero() {
 
   return (
     <>
-      <div
-        ref={containerRef}
-        className={`relative w-full ${isMobile ? 'min-h-[200dvh]' : 'min-h-[100dvh]'}`}
-      >
+      <div ref={containerRef} data-hero-section className='relative w-full min-h-[90vh] md:min-h-[100vh]'>
         <motion.div
-          className='w-full h-[100dvh] md:min-h-[100dvh] flex flex-col overflow-visible md:overflow-hidden sticky top-0'
-          style={{
-            ...(isMobile ? { y: containerY } : {}),
-          }}
+          className='w-full h-[90vh] md:h-[100vh] flex flex-col overflow-visible md:overflow-hidden md:sticky top-0'
           animate={
             shouldShake
               ? {
@@ -85,10 +72,7 @@ export default function Hero() {
           </video>
           <div className='relative z-20 pt-8 px-8 flex-shrink-0'>
             {/* Left: Hamburger - Absolutely positioned */}
-            <motion.div
-              className='absolute top-2 left-2 md:top-8 md:left-8 z-30'
-              style={isMobile ? { y: logoY } : {}}
-            >
+            <motion.div className='absolute top-2 left-2 md:top-8 md:left-8 z-30'>
               <button
                 aria-label='Open menu'
                 aria-expanded={menuOpen}
@@ -110,10 +94,7 @@ export default function Hero() {
             </motion.div>
 
             {/* Right: Tagline and badge - Absolutely positioned */}
-            <motion.div
-              className='absolute top-2 right-2 md:top-8 md:right-8 z-30 flex items-center gap-2'
-              style={isMobile ? { y: logoY } : {}}
-            >
+            <motion.div className='absolute top-2 right-2 md:top-8 md:right-8 z-30 flex items-center gap-2'>
               <span className='hidden md:inline font-russo tracking-wide uppercase text-right text-sm text-[#e6e3db]/90'>
                 quality guitars
                 <br />
@@ -134,7 +115,6 @@ export default function Hero() {
               transition={{ duration: 0.6, ease: 'easeOut' }}
               onAnimationComplete={() => setLogoComplete(true)}
               className='mb-8'
-              style={isMobile ? { y: logoY } : {}}
             >
               <Image
                 src='/logo-big.webp'
@@ -146,10 +126,7 @@ export default function Hero() {
               />
             </motion.div>
             <div className='md:flex md:items-start md:gap-8 md:max-w-[650px] md:mx-auto'>
-              <motion.div
-                className='text-left max-w-4xl mx-auto md:mx-0 font-bold text-4xl'
-                style={isMobile ? { y: taglinesY } : {}}
-              >
+              <motion.div className='text-left max-w-4xl mx-auto md:mx-0 font-bold text-4xl'>
                 <motion.div
                   initial='hidden'
                   animate={logoComplete && guitarComplete ? 'visible' : 'hidden'}
@@ -217,27 +194,13 @@ export default function Hero() {
                 </p>
               </div>
             </div>
-            <motion.div
-              ref={adCopyRef}
-              className='md:hidden px-0 pt-12 pb-12 text-white opacity-0'
-              style={isMobile ? { y: adCopyY, opacity: adCopyOpacity } : {}}
-            >
-              <p className='text-xl leading-relaxed max-w-4xl mx-auto'>
-                Warboy Guitars were born on the battlefield of creativity, built by musicians who
-                demanded more. Every Warboy is a precision-crafted instrument engineered for speed,
-                tone, and power. Our guitars deliver custom-shop quality at half the price of
-                commercial brands. Forget the cookie-cutter imports. This is your weapon of choice.
-                Built by musicians, for musicians.
-              </p>
-            </motion.div>
           </div>
           <motion.div
-            className='absolute bottom-0 left-0 right-0 z-0 pb-8 h-[60dvh]'
+            className='absolute bottom-0 left-0 right-0 z-0 pb-8 h-[60vh]'
             initial={{ y: '-100%' }}
             animate={{ y: 0 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
             onAnimationComplete={handleGuitarComplete}
-            style={isMobile ? { opacity: guitarOpacity } : {}}
           >
             <Image
               src='/main-ad-guitar.webp'
