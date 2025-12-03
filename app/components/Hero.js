@@ -120,7 +120,7 @@ export default function Hero() {
                 for less
               </span>
               <Image
-                src='/ca-usa-badge.png'
+                src='/ca-usa-badge.webp'
                 alt='California, USA'
                 width={66}
                 height={75}

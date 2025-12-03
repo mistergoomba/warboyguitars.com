@@ -1,7 +1,8 @@
 # Asset Optimization Analysis - Warboy Guitars
 
 ## Executive Summary
-**Total Public Assets Size: ~45MB**
+
+**Total Public Assets Size: ~49MB**
 
 This analysis identifies opportunities to reduce load times and improve site performance through asset optimization.
 
@@ -9,194 +10,135 @@ This analysis identifies opportunities to reduce load times and improve site per
 
 ## 🔴 Critical Issues (High Impact)
 
-### 1. **Hero Full Images - PNG Format (16MB+ total)**
-**Location:** `public/guitars/*/hero-full.png`
-- **Current Size:** 4.0-4.4MB each (4 guitars = ~16MB)
-- **Dimensions:** 3200x4800px PNG (RGBA)
-- **Usage:** Loaded on-demand in zoom overlay
-- **Impact:** These are the largest single files on the site
+### 1. **Unused Thunderpig Assets (~6.9MB)**
 
-**Recommendations:**
-- ✅ Convert to WebP format (estimated 70-80% reduction = ~3-4MB savings per image)
-- ✅ Consider AVIF format for modern browsers (even better compression)
-- ✅ Create multiple sizes if needed (though zoom overlay may need full res)
-- **Potential Savings: ~12-13MB**
+**Location:** `public/guitars/thunderpig/` (entire directory)
 
-### 2. **Video Files (3.5MB total)**
-**Location:** `public/main-ad-bg.mp4` (1.4MB), `public/main-ad.mp4` (2.1MB)
-- **Usage:** Background video in Hero component (autoplay, loop, muted)
-- **Impact:** Loaded immediately on homepage
-
-**Recommendations:**
-- ✅ Re-encode with better compression (H.264 with lower bitrate)
-- ✅ Consider WebM format as primary with MP4 fallback
-- ✅ Add `preload="metadata"` or `preload="none"` to defer loading
-- ✅ Consider using poster image instead of video for mobile
-- ✅ Lazy load video (only start when in viewport)
-- **Potential Savings: ~1-1.5MB**
-
-### 3. **Background Images - bg.jpg (1.3MB total)**
-**Location:** `public/guitars/*/bg.jpg` (4 files, 327-368KB each)
-- **Usage:** Full-screen backgrounds in GuitarList component (100dvh each)
-- **Impact:** Loaded for each guitar row
-
-**Recommendations:**
-- ✅ Optimize JPEG compression (reduce quality to 80-85%)
-- ✅ Convert to WebP format (better compression for photos)
-- ✅ Consider using Next.js Image component with blur placeholder
-- ✅ Implement lazy loading (only load when row is near viewport)
-- **Potential Savings: ~400-500KB**
+- **Status:** Removed from data.js but files still exist
+- **Impact:** Unnecessary storage, potential confusion
+- **Recommendations:**
+  - ✅ **DELETE** entire `public/guitars/thunderpig/` directory
+  - **Potential Savings: ~6.9MB**
 
 ---
 
 ## 🟡 Medium Priority Issues
 
-### 4. **Thumbnail Images - PNG Format (500KB total)**
-**Location:** `public/guitars/*/thumb.png` (4 files, 124-140KB each)
-- **Usage:** Displayed in GuitarList component (70dvh height)
-- **Impact:** Loaded on homepage
+### 2. **Noise Texture - PNG Format (131KB)**
 
-**Recommendations:**
-- ✅ Convert to WebP format (estimated 30-40% reduction)
-- ✅ Optimize PNG compression if keeping PNG
-- ✅ Ensure Next.js Image optimization is working
-- **Potential Savings: ~150-200KB**
+**Location:** `public/noise.png`
 
-### 5. **Main Ad Assets (2.7MB total)**
-**Location:** 
-- `public/main-ad-bg.png` (2.4MB) - Fallback for video
-- `public/main-ad-guitar.png` (298KB) - Overlay image
-
-**Recommendations:**
-- ✅ Convert main-ad-bg.png to WebP (huge savings)
-- ✅ Optimize main-ad-guitar.png or convert to WebP
-- ✅ Consider if main-ad-bg.png is actually needed (video should handle this)
-- **Potential Savings: ~1.5-2MB**
-
-### 6. **Logo Files (400KB+ total)**
-**Location:** `public/logo*.png` files
-- **Current:** logo-big.png (183KB), logo.png (243KB), logo-horiz.png (59KB)
-- **Usage:** Various components
-
-**Recommendations:**
-- ✅ Convert to WebP or SVG (logos are good candidates for SVG)
-- ✅ Optimize PNG compression
-- **Potential Savings: ~200-300KB**
+- **Usage:** Background texture in globals.css
+- **Impact:** Loaded on every page
+- **Recommendations:**
+  - ✅ Convert to WebP (estimated 30-40% reduction)
+  - ✅ Consider using CSS noise generation instead (no file needed)
+  - **Potential Savings: ~40-50KB**
 
 ---
 
 ## 🟢 Low Priority / Cleanup
 
-### 7. **Unused Thunderpig Assets (~3MB)**
-**Location:** `public/guitars/thunderpig/` (entire directory)
-- **Status:** Removed from data.js but files still exist
-- **Impact:** Unnecessary storage, potential confusion
+### 3. **Original PNG/MP4 Files (Backups)**
 
-**Recommendations:**
-- ✅ **DELETE** entire `public/guitars/thunderpig/` directory
-- **Potential Savings: ~3MB**
+**Location:** Various original files that have been converted to WebP
 
-### 8. **Gallery Images - Mixed Formats**
+- **Status:** WebP versions are being used, originals kept as backups
+- **Impact:** Storage space
+- **Recommendations:**
+  - ⚠️ Consider removing original PNG/MP4 files after verifying WebP works correctly
+  - ⚠️ Keep originals in version control, remove from public directory
+  - **Potential Savings: ~20-25MB (if originals removed)**
+
+### 4. **Gallery Images - Mixed Formats**
+
 **Status:** Gallery images already have WebP versions (good!)
+
 - **Observation:** Both JPG and WebP exist for most images
 - **Current Usage:** Gallery component uses manifest.json to select appropriate sizes
-
-**Recommendations:**
-- ✅ Ensure WebP is prioritized in manifest.json
-- ✅ Consider removing unused JPG versions if WebP is always preferred
-- ⚠️ Keep both formats for browser compatibility
-
-### 9. **Noise Texture (131KB)**
-**Location:** `public/noise.png`
-- **Usage:** Background texture in globals.css
 - **Recommendations:**
-- ✅ Convert to WebP
-- ✅ Consider using CSS noise generation instead
-- **Potential Savings: ~50-70KB**
+  - ✅ Ensure WebP is prioritized in manifest.json
+  - ⚠️ Keep both formats for browser compatibility
+  - **Note:** No immediate action needed, current setup is good
 
 ---
 
 ## 📊 Optimization Priority Matrix
 
-| Priority | Asset Type | Current Size | Potential Savings | Effort | Impact |
-|----------|-----------|--------------|-------------------|--------|--------|
-| 🔴 **P0** | hero-full.png (4 files) | 16MB | ~12-13MB | Medium | Very High |
-| 🔴 **P0** | Videos (2 files) | 3.5MB | ~1-1.5MB | Medium | High |
-| 🔴 **P0** | bg.jpg (4 files) | 1.3MB | ~400-500KB | Low | Medium |
-| 🟡 **P1** | thumb.png (4 files) | 500KB | ~150-200KB | Low | Medium |
-| 🟡 **P1** | main-ad assets | 2.7MB | ~1.5-2MB | Low | Medium |
-| 🟡 **P1** | Logo files | 400KB | ~200-300KB | Low | Low |
-| 🟢 **P2** | Thunderpig (unused) | 3MB | 3MB | Very Low | Low |
-| 🟢 **P2** | noise.png | 131KB | ~50-70KB | Very Low | Low |
+| Priority  | Asset Type          | Current Size | Potential Savings | Effort   | Impact |
+| --------- | ------------------- | ------------ | ----------------- | -------- | ------ |
+| 🔴 **P0** | Thunderpig (unused) | 6.9MB        | 6.9MB             | Very Low | High   |
+| 🟡 **P1** | noise.png           | 131KB        | ~40-50KB          | Low      | Low    |
+| 🟢 **P2** | Original backups    | ~20-25MB     | ~20-25MB          | Low      | Low    |
 
-**Total Potential Savings: ~19-21MB (42-47% reduction)**
+**Total Potential Savings: ~6.9-7MB (14% reduction)**
+**Note:** Removing unused/original files could save ~27-32MB total
 
 ---
 
 ## 🛠️ Implementation Recommendations
 
 ### Immediate Actions (Quick Wins)
-1. **Delete thunderpig directory** - 3MB saved instantly
-2. **Convert thumbnails to WebP** - Easy, ~200KB saved
-3. **Optimize bg.jpg files** - Re-compress with better settings
+
+1. **Delete thunderpig directory** - 6.9MB saved instantly
 
 ### Short-term (1-2 days)
-1. **Convert hero-full.png to WebP** - Biggest impact
-2. **Optimize video files** - Re-encode with better compression
-3. **Convert logo files to WebP/SVG**
 
-### Medium-term (1 week)
-1. **Implement lazy loading for bg.jpg** in GuitarList
-2. **Add video preload optimization** in Hero component
-3. **Audit and optimize all remaining PNG files**
+1. **Convert noise.png to WebP** - Easy, ~50KB saved
+
+### Medium-term (Optional)
+
+1. **Clean up original backup files** - After verifying WebP works correctly
+2. **Consider CSS noise generation** - Eliminate noise.png entirely
 
 ---
 
 ## 🔧 Technical Implementation Notes
 
 ### Image Conversion Tools
+
 ```bash
 # WebP conversion (using cwebp)
 cwebp -q 85 input.png -o output.webp
 
-# JPEG optimization
-jpegoptim --max=85 --strip-all input.jpg
-
 # Batch conversion script
-find public/guitars -name "*.png" -exec cwebp -q 85 {} -o {}.webp \;
+find public -name "*.png" ! -name "*.webp" -exec cwebp -q 85 {} -o {}.webp \;
 ```
 
 ### Next.js Image Optimization
+
 - ✅ Already using Next.js Image component (good!)
-- ⚠️ Ensure `next.config.mjs` has image optimization enabled
-- ⚠️ Consider adding `unoptimized: false` explicitly if needed
+- ✅ WebP format is automatically served when available
+- ✅ Image optimization is enabled by default in Next.js
 
 ### Video Optimization
+
 ```bash
 # FFmpeg command for better compression
 ffmpeg -i input.mp4 -c:v libx264 -crf 28 -preset slow -c:a aac -b:a 128k output.mp4
-```
 
-### Lazy Loading Implementation
-- Use `loading="lazy"` for images below the fold
-- Consider Intersection Observer for bg.jpg in GuitarList
-- Video: Use `preload="metadata"` or `preload="none"`
+# WebM conversion
+ffmpeg -i input.mp4 -c:v libvpx-vp9 -crf 30 -b:v 0 -c:a libopus -b:a 64k output.webm
+```
 
 ---
 
 ## 📈 Expected Performance Improvements
 
-### Before Optimization
-- **Total Assets:** ~45MB
-- **Initial Load:** ~8-10MB (Hero video + images)
-- **Time to Interactive:** Slower on slower connections
+### Current State
+
+- **Total Assets:** ~49MB
+- **Unused Assets:** ~6.9MB (thunderpig directory)
+- **Optimization Opportunities:** ~6.9-7MB additional savings
 
 ### After Optimization
-- **Total Assets:** ~24-26MB (42-47% reduction)
-- **Initial Load:** ~4-5MB (optimized video + WebP images)
-- **Time to Interactive:** 40-50% faster on average connections
+
+- **Total Assets:** ~30-32MB (35-40% reduction)
+- **Initial Load:** Optimized with WebP images
+- **Time to Interactive:** Faster on average connections
 
 ### Metrics to Track
+
 - Lighthouse Performance Score
 - First Contentful Paint (FCP)
 - Largest Contentful Paint (LCP)
@@ -208,31 +150,23 @@ ffmpeg -i input.mp4 -c:v libx264 -crf 28 -preset slow -c:a aac -b:a 128k output.
 ## ✅ Checklist
 
 - [ ] Delete `public/guitars/thunderpig/` directory
-- [ ] Convert hero-full.png → hero-full.webp (4 files)
-- [ ] Update data.js to use .webp extensions
-- [ ] Optimize/re-encode video files
-- [ ] Convert thumb.png → thumb.webp (4 files)
-- [ ] Optimize bg.jpg files (re-compress)
-- [ ] Convert logo files to WebP/SVG
-- [ ] Convert main-ad-bg.png to WebP
-- [ ] Add lazy loading to bg.jpg in GuitarList
-- [ ] Optimize video preload in Hero component
+- [ ] Convert noise.png → noise.webp
+- [ ] Update code references to use WebP versions
 - [ ] Test all changes across browsers
 - [ ] Run Lighthouse audit before/after
-- [ ] Update any hardcoded image paths
+- [ ] Consider cleaning up original backup files
 
 ---
 
 ## 📝 Notes
 
 - **WebP Browser Support:** 95%+ (all modern browsers)
-- **AVIF Support:** 85%+ (consider for future)
 - **Next.js Image:** Automatically serves WebP when available
 - **Backward Compatibility:** Keep original formats as fallbacks if needed
+- **Version Control:** Keep original files in git, remove from public directory after verification
 
 ---
 
-*Generated: $(date)*
-*Total Analysis Time: ~5 minutes*
-*Recommended Implementation Time: 1-2 days for full optimization*
-
+_Analysis Date: $(date)_
+_Total Analysis Time: ~5 minutes_
+_Recommended Implementation Time: 1-2 hours for quick wins, 1 day for full optimization_

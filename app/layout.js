@@ -39,7 +39,7 @@ export const metadata = {
     siteName: 'WARBOY GUITARS',
     images: [
       {
-        url: '/share-image.png',
+        url: '/share-image.webp',
         width: 1200,
         height: 630,
         alt: 'WARBOY GUITARS Share Image',
@@ -52,7 +52,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'WARBOY GUITARS | Handcrafted for Battle',
     description: 'Custom guitars born from chaos — WARPIG, SPECTER, CLAWTOOTH, ARCWIND.',
-    images: ['/share-image.png'],
+    images: ['/share-image.webp'],
     creator: '@warboyguitars',
   },
   icons: {
