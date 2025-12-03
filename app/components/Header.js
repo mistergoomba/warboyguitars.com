@@ -92,7 +92,7 @@ export default function Header({ enableScrollBehavior = false }) {
             <div className='col-span-4 md:col-span-2 flex justify-center'>
               <Link href='/' className='block'>
                 <Image
-                  src='/logo-horiz.png'
+                  src='/logo-horiz.webp'
                   alt='Warboy Logo'
                   width={300}
                   height={80}

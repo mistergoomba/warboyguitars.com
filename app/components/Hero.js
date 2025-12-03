@@ -137,7 +137,7 @@ export default function Hero() {
               style={isMobile ? { y: logoY } : {}}
             >
               <Image
-                src='/logo-big.png'
+                src='/logo-big.webp'
                 alt='Warboy Guitars Logo'
                 width={800}
                 height={400}
@@ -240,7 +240,7 @@ export default function Hero() {
             style={isMobile ? { opacity: guitarOpacity } : {}}
           >
             <Image
-              src='/main-ad-guitar.png'
+              src='/main-ad-guitar.webp'
               alt='Guitar'
               width={1200}
               height={800}
