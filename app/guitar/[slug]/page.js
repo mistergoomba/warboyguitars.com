@@ -19,12 +19,7 @@ export default async function Page({ params }) {
       <div className='fixed inset-0 -z-10'>
         <picture className='w-full h-full'>
           <source srcSet={guitar.bg} type='image/webp' />
-          <img
-            src={guitar.bgFallback}
-            alt=''
-            className='w-full h-full object-cover'
-            aria-hidden='true'
-          />
+          <img src={guitar.bg} alt='' className='w-full h-full object-cover' aria-hidden='true' />
         </picture>
       </div>
       <Header />

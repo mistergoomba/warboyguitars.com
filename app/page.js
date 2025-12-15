@@ -5,8 +5,8 @@ import GuitarList from './components/GuitarList';
 import Footer from './components/Footer';
 import GuitarProgressTimeline from './components/GuitarProgressTimeline';
 
-// Order: warpig, ravenhawk, specter, arcwind, clawtooth
-const guitarOrder = ['warpig', 'ravenhawk', 'specter', 'arcwind', 'clawtooth'];
+// Order: warpig, ravenhawk, specter, arcwind, clawtooth, thunderpig
+const guitarOrder = ['warpig', 'ravenhawk', 'specter', 'arcwind', 'clawtooth', 'thunderpig'];
 
 export default function Home() {
   return (

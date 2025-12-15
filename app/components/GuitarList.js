@@ -29,7 +29,7 @@ export default function GuitarList({ guitarOrder = [] }) {
     // z-index increases: 0, 10, 20, 30 for stacking effect
     const zIndex = index * 10;
     const supportsWebP = useWebPSupport();
-    const bgImage = supportsWebP ? guitar.bg : guitar.bgFallback || guitar.bg;
+    const bgImage = guitar.bg;
     const sectionRef = useRef(null);
 
     // Track scroll progress through this section
@@ -47,7 +47,7 @@ export default function GuitarList({ guitarOrder = [] }) {
     const buttonOpacity = useTransform(scrollYProgress, [0.4, 0.48], [0, 1]);
 
     // Guitar: subtle size growth as you scroll
-    const guitarScale = useTransform(scrollYProgress, [0.2, 0.5], [0.8, 1.1]);
+    const guitarScale = useTransform(scrollYProgress, [0.2, 0.5], [0.6, 1.1]);
 
     return (
       <div

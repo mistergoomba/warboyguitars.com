@@ -6,7 +6,6 @@ export const GUITARS = {
     heroFull: '/guitars/warpig/hero-full.webp',
     thumb: '/guitars/warpig/thumb.webp',
     bg: '/guitars/warpig/bg.webp',
-    bgFallback: '/guitars/warpig/bg.jpg',
     galleryManifest: '/guitars/warpig/gallery/manifest.json',
     images: [
       '/guitars/warpig/gallery/1_w800.jpg',
@@ -38,7 +37,6 @@ export const GUITARS = {
     heroFull: '/guitars/ravenhawk/hero-full.webp',
     thumb: '/guitars/ravenhawk/thumb.webp',
     bg: '/guitars/ravenhawk/bg.webp',
-    bgFallback: '/guitars/ravenhawk/bg.jpg',
     galleryManifest: '/guitars/ravenhawk/gallery/manifest.json',
     images: [
       '/guitars/ravenhawk/gallery/1_w800.jpg',
@@ -75,7 +73,6 @@ export const GUITARS = {
     heroFull: '/guitars/specter/hero-full.webp',
     thumb: '/guitars/specter/thumb.webp',
     bg: '/guitars/specter/bg.webp',
-    bgFallback: '/guitars/specter/bg.jpg',
     galleryManifest: '/guitars/specter/gallery/manifest.json',
     images: [
       '/guitars/specter/gallery/1_w800.jpg',
@@ -105,7 +102,6 @@ export const GUITARS = {
     heroFull: '/guitars/arcwind/hero-full.webp',
     thumb: '/guitars/arcwind/thumb.webp',
     bg: '/guitars/arcwind/bg.webp',
-    bgFallback: '/guitars/arcwind/bg.jpg',
     galleryManifest: '/guitars/arcwind/gallery/manifest.json',
     images: ['/guitars/arcwind/gallery/1_w800.jpg'],
     specs: [
@@ -130,7 +126,6 @@ export const GUITARS = {
     heroFull: '/guitars/clawtooth/hero-full.webp',
     thumb: '/guitars/clawtooth/thumb.webp',
     bg: '/guitars/clawtooth/bg.webp',
-    bgFallback: '/guitars/clawtooth/bg.jpg',
     galleryManifest: '/guitars/clawtooth/gallery/manifest.json',
     images: ['/guitars/clawtooth/gallery/1_w800.jpg'],
     specs: [
@@ -145,6 +140,24 @@ export const GUITARS = {
       'Fretboard radius: 12"',
       'Potentiometers: 500k',
     ],
+  },
+
+  thunderpig: {
+    name: 'THUNDERPIG',
+    slug: 'thunderpig',
+    heroPreview: '/guitars/thunderpig/hero-small.webp',
+    heroFull: '/guitars/thunderpig/hero-full.webp',
+    bg: '/guitars/thunderpig/bg.webp',
+    thumb: '/guitars/thunderpig/thumb.webp',
+    galleryManifest: '/guitars/thunderpig/gallery/manifest.json',
+    images: [
+      '/guitars/thunderpig/gallery/1_w800.jpg',
+      '/guitars/thunderpig/gallery/2_w800.jpg',
+      '/guitars/thunderpig/gallery/3_w800.jpg',
+    ],
+    specs: [],
+    testimonial:
+      "“I've never owned a bass I loved this much. I've played more bass in the last 48 hours than I have in the last 5 years.” — Nate",
   },
 };
 
